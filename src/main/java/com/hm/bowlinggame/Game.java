@@ -10,8 +10,16 @@ public class Game {
 
 	public int score() {
 		int score = 0;
-		for (int pins : rolls)
-			score += pins;
+		int currentRoll = 0;
+		for (int currentFrame = 0; currentFrame < 10; currentFrame++) {
+			if (rolls[currentRoll] + rolls[currentRoll + 1] == 10) {
+				score += 10 + rolls[currentRoll + 2];
+				currentRoll += 2;
+			} else {
+				score += rolls[currentRoll] + rolls[currentRoll + 1];
+				currentRoll += 2;
+			}
+		}
 		return score;
 	}
 

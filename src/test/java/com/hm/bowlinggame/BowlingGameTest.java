@@ -3,7 +3,6 @@ package com.hm.bowlinggame;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class BowlingGameTest {
@@ -32,7 +31,6 @@ public class BowlingGameTest {
 		assertEquals(20, game.score());
 	}
 
-	@Ignore
 	@Test
 	public void oneSpare() throws Exception {
 		game.roll(1);
