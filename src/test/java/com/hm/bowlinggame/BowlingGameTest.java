@@ -13,24 +13,21 @@ public class BowlingGameTest {
 		game = new Game();
 	}
 
-	@Test
-	public void roll() throws Exception {
-		game.roll(0);
+	private void rollMany(int pins, int times) {
+		for (int i = 0; i < times; i++) {
+			game.roll(pins);
+		}
 	}
 
 	@Test
 	public void allZeros() throws Exception {
-		for (int i = 0; i < 20; i++) {
-			game.roll(0);
-		}
+		rollMany(0, 20);
 		assertEquals(0, game.score());
 	}
 
 	@Test
 	public void allOnes() throws Exception {
-		for (int i = 0; i < 20; i++) {
-			game.roll(1);
-		}
+		rollMany(1, 20);
 		assertEquals(20, game.score());
 	}
 
