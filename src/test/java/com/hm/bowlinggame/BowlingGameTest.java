@@ -1,5 +1,7 @@
 package com.hm.bowlinggame;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,6 +16,14 @@ public class BowlingGameTest {
 	@Test
 	public void roll() throws Exception {
 		game.roll(0);
+	}
+
+	@Test
+	public void allZeros() throws Exception {
+		for (int i = 0; i < 20; i++) {
+			game.roll(0);
+		}
+		assertEquals(0, game.score());
 	}
 
 }
