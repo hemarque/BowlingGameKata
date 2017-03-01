@@ -12,7 +12,11 @@ public class Game {
 		int score = 0;
 		int currentRoll = 0;
 		for (int currentFrame = 0; currentFrame < 10; currentFrame++) {
-			if (isSpare(currentRoll)) {
+			if (rolls[currentRoll] == 10) {
+				score += 10 + rolls[currentRoll + 1]
+						+ rolls[currentRoll + 2];
+				currentRoll++;
+			} else if (isSpare(currentRoll)) {
 				score += 10 + rolls[currentRoll + 2];
 				currentRoll += 2;
 			} else {
