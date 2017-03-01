@@ -12,7 +12,7 @@ public class Game {
 		int score = 0;
 		int currentRoll = 0;
 		for (int currentFrame = 0; currentFrame < 10; currentFrame++) {
-			if (rolls[currentRoll] == 10) {
+			if (isStrike(currentRoll)) {
 				score += 10 + rolls[currentRoll + 1]
 						+ rolls[currentRoll + 2];
 				currentRoll++;
@@ -25,6 +25,10 @@ public class Game {
 			}
 		}
 		return score;
+	}
+
+	private boolean isStrike(int currentRoll) {
+		return rolls[currentRoll] == 10;
 	}
 
 	private boolean isSpare(int currentRoll) {
