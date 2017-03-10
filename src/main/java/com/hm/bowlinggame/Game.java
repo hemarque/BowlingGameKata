@@ -13,29 +13,28 @@ public class Game {
 
 	public int score() {
 		int score = 0;
-		int currentRoll = 0;
+		int roll = 0;
 		for (int currentFrame = 0; currentFrame < NUMBER_OF_FRAMES; currentFrame++) {
-			if (isStrike(currentRoll)) {
-				score += ALL_PINS + rolls[currentRoll + 1]
-						+ rolls[currentRoll + 2];
-				currentRoll++;
-			} else if (isSpare(currentRoll)) {
-				score += ALL_PINS + rolls[currentRoll + 2];
-				currentRoll += 2;
+			if (isStrike(roll)) {
+				score += ALL_PINS + rolls[roll + 1] + rolls[roll + 2];
+				roll++;
+			} else if (isSpare(roll)) {
+				score += ALL_PINS + rolls[roll + 2];
+				roll += 2;
 			} else {
-				score += rolls[currentRoll] + rolls[currentRoll + 1];
-				currentRoll += 2;
+				score += rolls[roll] + rolls[roll + 1];
+				roll += 2;
 			}
 		}
 		return score;
 	}
 
-	private boolean isStrike(int currentRoll) {
-		return rolls[currentRoll] == 10;
+	private boolean isStrike(int roll) {
+		return rolls[roll] == ALL_PINS;
 	}
 
-	private boolean isSpare(int currentRoll) {
-		return rolls[currentRoll] + rolls[currentRoll + 1] == 10;
+	private boolean isSpare(int roll) {
+		return rolls[roll] + rolls[roll + 1] == ALL_PINS;
 	}
 
 }
