@@ -1,7 +1,10 @@
 package com.hm.bowlinggame;
 
 public class Game {
-	int[] rolls = new int[21];
+	final int MAX_POSSIBLE_ROLLS = 21;
+	final int ALL_PINS = 10;
+	final int NUMBER_OF_FRAMES = 10;
+	int[] rolls = new int[MAX_POSSIBLE_ROLLS];
 	int currentRoll = 0;
 
 	public void roll(int pins) {
@@ -11,13 +14,13 @@ public class Game {
 	public int score() {
 		int score = 0;
 		int currentRoll = 0;
-		for (int currentFrame = 0; currentFrame < 10; currentFrame++) {
+		for (int currentFrame = 0; currentFrame < NUMBER_OF_FRAMES; currentFrame++) {
 			if (isStrike(currentRoll)) {
-				score += 10 + rolls[currentRoll + 1]
+				score += ALL_PINS + rolls[currentRoll + 1]
 						+ rolls[currentRoll + 2];
 				currentRoll++;
 			} else if (isSpare(currentRoll)) {
-				score += 10 + rolls[currentRoll + 2];
+				score += ALL_PINS + rolls[currentRoll + 2];
 				currentRoll += 2;
 			} else {
 				score += rolls[currentRoll] + rolls[currentRoll + 1];
