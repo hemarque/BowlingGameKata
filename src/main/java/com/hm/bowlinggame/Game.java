@@ -16,13 +16,14 @@ public class Game {
 		int roll = 0;
 		for (int currentFrame = 0; currentFrame < NUMBER_OF_FRAMES; currentFrame++) {
 			if (isStrike(roll)) {
-				score += ALL_PINS + rolls[roll + 1] + rolls[roll + 2];
+				score += ALL_PINS + nextFirstRoll(roll)
+						+ nextSecondRoll(roll);
 				roll++;
 			} else if (isSpare(roll)) {
-				score += ALL_PINS + rolls[roll + 2];
+				score += ALL_PINS + nextSecondRoll(roll);
 				roll += 2;
 			} else {
-				score += rolls[roll] + rolls[roll + 1];
+				score += currentRoll(roll) + nextFirstRoll(roll);
 				roll += 2;
 			}
 		}
@@ -30,11 +31,22 @@ public class Game {
 	}
 
 	private boolean isStrike(int roll) {
-		return rolls[roll] == ALL_PINS;
+		return currentRoll(roll) == ALL_PINS;
 	}
 
 	private boolean isSpare(int roll) {
-		return rolls[roll] + rolls[roll + 1] == ALL_PINS;
+		return currentRoll(roll) + nextFirstRoll(roll) == ALL_PINS;
 	}
 
+	private int currentRoll(int roll) {
+		return rolls[roll];
+	}
+
+	private int nextSecondRoll(int roll) {
+		return rolls[roll + 2];
+	}
+
+	private int nextFirstRoll(int roll) {
+		return rolls[roll + 1];
+	}
 }
